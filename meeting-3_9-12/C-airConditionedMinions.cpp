@@ -39,7 +39,7 @@ int main() {
 
     /* ALMOST DONE, JUST GOTTA DO THE INPUT AND THIS SHOULD WORK 
     
-    FINISH LATER THOUGH BECAUSE I GOPTTA GET TO INFO SECURITY CLASS */
+    FINISH LATER THOUGH BECAUSE I GOTTA GET TO SOFTWARE ENGINEERING CLASS */
 
     // Min heap implemented with priority queue below
     priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp1)> preferredTemps(cmp1);
