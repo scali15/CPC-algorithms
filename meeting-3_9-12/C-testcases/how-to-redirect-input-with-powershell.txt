@@ -1,0 +1,6 @@
+Get-Content C-testcases/test1.txt | ./minions
+
+so:
+
+Get-Context [TEST CASE TEXT FILE] | ./[executable] 
+    - apparantly '.exe' is not needed though for these executable files

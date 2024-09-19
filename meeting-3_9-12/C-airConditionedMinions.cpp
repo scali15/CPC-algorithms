@@ -11,41 +11,52 @@ auto cmp1 = [](const pair<int, int>& a, const pair<int, int>& b) {
     return (a.second - a.first) > (b.second - b.first);
 };
 
-// Function to count the number of minions a certain integer value will satisy
-int skewerCount(priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp1)> rectangles, int skewer){
+
+// Function to count the number of minions a certain integer value will satisfy
+int skewerCount(priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp1)>& rectangles, int skewer){
     int count = 0;
+    vector<pair<int, int>> copy;
     while(!rectangles.empty()){
         if (skewer >= rectangles.top().first && skewer <= rectangles.top().second){
             count++;
         }
+        copy.push_back(rectangles.top());
         rectangles.pop();
+    }
+    for (const auto& rec : copy){
+        rectangles.push(rec);
     }
     return count;
 }
 
 void removeStabbed(priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp1)>& rectangles, int skewer){
-    priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp1)> rCopy(cmp1);
-    rectangles.swap(rCopy);
-    while(!rCopy.empty()){
-        pair<int, int> curr = rCopy.top();
-        rCopy.pop();
+    vector<pair<int, int>> intactRectangles;
+
+    while(!rectangles.empty()){
+        pair<int, int> curr = rectangles.top();
+        rectangles.pop();
         if (skewer < curr.first || skewer > curr.second){
-            rectangles.push(curr);
+            intactRectangles.push_back(curr);
         }
+    }
+    for (const auto& rectangle : intactRectangles){
+        rectangles.push(rectangle);
     }
 }
 
 int main() {
 
-    /* ALMOST DONE, JUST GOTTA DO THE INPUT AND THIS SHOULD WORK 
-    
-    FINISH LATER THOUGH BECAUSE I GOTTA GET TO SOFTWARE ENGINEERING CLASS */
-
     // Min heap implemented with priority queue below
     priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp1)> preferredTemps(cmp1);
-    // sorted queue ordered 
-    priority_queue preferredTempsCopy(preferredTemps);
-    vector<pair<int, int>> rectangles;
+
+    int n;
+    cin >> n;
+
+    int x, y;
+    for (int i = 0; i < n; i++){
+        cin >> x >> y;
+        preferredTemps.push(pair<int, int>(x, y));
+    }
 
     pair<int, int> strictestMinion;
     int numSkewers = 0;
