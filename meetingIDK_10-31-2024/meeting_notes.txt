@@ -1,0 +1,12 @@
+Graphs
+
+graph terminology:
+    - adjacent nodes/ neighbor nodes
+    - an edge is incident on node A if it connects to one of the adjacent nodes to A
+    - Adjacency List
+        A - > [B, C]
+    
+    - Frontier/ fringe
+        search sets consist of visited set and fringe set, 
+        eventually finds all vertices that can be reached from the start node
+        ~ Used this pretty extensively in first AI class project
